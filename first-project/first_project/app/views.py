@@ -1,5 +1,5 @@
 import os
-from datetime import date
+from datetime import datetime, timezone
 
 from django.http import HttpResponse
 from django.shortcuts import render, reverse
@@ -19,8 +19,8 @@ def home_view(request):
 
 
 def time_view(request):
-    current_time = date.today()
-    msg = f'Текущее время: {current_time}'
+    current_time = datetime.now(timezone.utc).time()
+    msg = f'Текущее время UTC: {current_time}'
     return HttpResponse(msg)
 
 
